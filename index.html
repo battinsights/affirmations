@@ -251,19 +251,22 @@
        WAVING BANNER
     ═══════════════════════════════════ */
     .banner {
-      background: #f8f5f0;
       text-align: center;
       padding: 2.5rem 1.25rem 0;
       position: relative;
       z-index: 1;
     }
 
+    .banner.morning-mode { background: #f8f5f0; }
+    .banner.morning-mode .wave-text { color: #4a4340; }
+    .banner.evening-mode { background: #1a1a2e; }
+    .banner.evening-mode .wave-text { color: #e0dbd3; }
+
     .wave-text {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 500;
-      font-size: 1.5rem;
+      font-size: 1.05rem;
       letter-spacing: 0.04em;
-      color: #4a4340;
       display: inline-flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -284,10 +287,26 @@
        COPYRIGHT FOOTER
     ═══════════════════════════════════ */
     .copyright {
-      background: #141425;
       text-align: center;
       padding: 2rem 1.25rem;
+    }
+
+    .copyright.morning-mode {
+      background: #f8f5f0;
+      border-top: 1px solid #ece6de;
+    }
+
+    .copyright.morning-mode p {
+      color: #9b918a;
+    }
+
+    .copyright.evening-mode {
+      background: #141425;
       border-top: 1px solid #2e2b45;
+    }
+
+    .copyright.evening-mode p {
+      color: #6b6580;
     }
 
     .copyright p {
@@ -298,11 +317,13 @@
       color: #6b6580;
     }
 
+    .hidden { display: none !important; }
+
     @media (max-width: 480px) {
       .header h1 { font-size: 1.6rem; }
       .card { padding: 1.75rem 1.5rem; }
       .affirmation { font-size: 1.15rem; }
-      .wave-text { font-size: 1.15rem; }
+      .wave-text { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -772,7 +793,25 @@
     const dayOfYear = getDayOfYear(today);
     const totalDays = isLeapYear(year) ? 366 : 365;
     const dateStr = formatDate(today);
+    const hour = today.getHours();
 
+    // Morning: 4am–5:59pm (4–17), Evening: 6pm–3:59am (18–3)
+    const isMorning = hour >= 4 && hour < 18;
+
+    // Show/hide sections
+    const morningSection = document.querySelector(".morning");
+    const eveningSection = document.querySelector(".evening");
+    const banner = document.querySelector(".banner");
+
+    if (isMorning) {
+      eveningSection.classList.add("hidden");
+      banner.classList.add("morning-mode");
+    } else {
+      morningSection.classList.add("hidden");
+      banner.classList.add("evening-mode");
+    }
+
+    // Populate morning
     const morning = buildParagraph(morningPools, morningThemes, morningLabels, year * 1000 + dayOfYear, dayOfYear);
     document.getElementById("m-date").textContent = dateStr;
     document.getElementById("m-theme").textContent = morning.theme;
@@ -780,6 +819,7 @@
     document.getElementById("m-day").textContent = dayOfYear;
     document.getElementById("m-total").textContent = totalDays;
 
+    // Populate evening
     const evening = buildParagraph(eveningPools, eveningThemes, eveningLabels, year * 1000 + dayOfYear + 500000, dayOfYear);
     document.getElementById("e-date").textContent = dateStr;
     document.getElementById("e-theme").textContent = evening.theme;
@@ -792,6 +832,7 @@
     // ══════════════════════════════════════
     function setupVoice(btnId, text) {
       const btn = document.getElementById(btnId);
+      if (!btn || btn.closest(".hidden")) return;
       const playIcon = btn.querySelector(".icon-play");
       const stopIcon = btn.querySelector(".icon-stop");
       const label = btn.querySelector(".voice-label");
@@ -808,12 +849,6 @@
 
       function start() {
         speechSynthesis.cancel();
-        document.querySelectorAll(".voice-btn.speaking").forEach(b => {
-          b.classList.remove("speaking");
-          b.querySelector(".icon-play").style.display = "";
-          b.querySelector(".icon-stop").style.display = "none";
-          b.querySelector(".voice-label").textContent = "Read Aloud";
-        });
 
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 0.92;
@@ -850,6 +885,7 @@
 
     // Copyright year
     document.getElementById("copy-year").textContent = new Date().getFullYear();
+    document.querySelector(".copyright").classList.add(isMorning ? "morning-mode" : "evening-mode");
   </script>
 </body>
 </html>
