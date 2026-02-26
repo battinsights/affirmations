@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Affirmations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════
+       MORNING SECTION
+    ═══════════════════════════════════ */
+    .morning {
+      background: #f8f5f0;
+      color: #4a4340;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.25rem;
+      position: relative;
+    }
+
+    .morning::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+    }
+
+    .morning::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(196, 168, 130, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .morning .container { --accent: #c4a882; --accent-soft: #e8ddd0; --border: #ece6de; --bg-card: #fffdf9; --text: #4a4340; --text-light: #9b918a; }
+
+    /* ═══════════════════════════════════
+       EVENING SECTION
+    ═══════════════════════════════════ */
+    .evening {
+      background: #1a1a2e;
+      color: #e0dbd3;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.25rem;
+      position: relative;
+    }
+
+    .evening::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise2)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+    }
+
+    .evening::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(120, 100, 180, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .evening .container { --accent: #a89cc8; --accent-soft: #3d3a52; --border: #2e2b45; --bg-card: #22213a; --text: #e0dbd3; --text-light: #8a8499; }
+
+    /* ═══════════════════════════════════
+       SHARED STYLES
+    ═══════════════════════════════════ */
+    .container {
+      max-width: 620px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 1s ease both;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 1rem;
+      opacity: 0.7;
+    }
+
+    .icon svg { width: 100%; height: 100%; }
+
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .header .date {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 2.5rem;
+      opacity: 0.5;
+      animation: fadeIn 1.2s ease both 0.3s;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+      animation: fadeUp 1s ease both 0.4s;
+    }
+
+    .theme-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-soft);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .affirmation {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .voice-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.5rem auto 0;
+      padding: 0.6rem 1.4rem;
+      background: transparent;
+      border: 1px solid var(--accent-soft);
+      border-radius: 100px;
+      color: var(--accent);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .voice-btn:hover {
+      background: var(--accent);
+      color: var(--bg-card);
+      border-color: var(--accent);
+    }
+
+    .voice-btn:hover svg { stroke: var(--bg-card); }
+
+    .voice-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent);
+      fill: none;
+      transition: stroke 0.3s ease;
+    }
+
+    .voice-btn.speaking {
+      background: var(--accent);
+      color: var(--bg-card);
+      border-color: var(--accent);
+    }
+
+    .voice-btn.speaking svg { stroke: var(--bg-card); }
+
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      animation: fadeIn 1s ease both 0.8s;
+    }
+
+    .footer p {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+    }
+
+    .day-count { font-weight: 400; }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ═══════════════════════════════════
+       WAVING BANNER
+    ═══════════════════════════════════ */
+    .banner {
+      background: #f8f5f0;
+      text-align: center;
+      padding: 2.5rem 1.25rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wave-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: #4a4340;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0 0.3em;
+    }
+
+    .wave-text .wave-char {
+      display: inline-block;
+      animation: wave 3s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ═══════════════════════════════════
+       COPYRIGHT FOOTER
+    ═══════════════════════════════════ */
+    .copyright {
+      background: #141425;
+      text-align: center;
+      padding: 2rem 1.25rem;
+      border-top: 1px solid #2e2b45;
+    }
+
+    .copyright p {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: #6b6580;
+    }
+
+    @media (max-width: 480px) {
+      .header h1 { font-size: 1.6rem; }
+      .card { padding: 1.75rem 1.5rem; }
+      .affirmation { font-size: 1.15rem; }
+      .wave-text { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════ WAVING BANNER ════════════════ -->
+  <div class="banner">
+    <div class="wave-text" id="wave-text"></div>
+  </div>
+
+  <!-- ════════════════ MORNING ════════════════ -->
+  <section class="morning">
+    <div class="container">
+      <div class="header">
+        <div class="icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="8" stroke="#c4a882" stroke-width="1.5"/>
+            <line x1="20" y1="4" x2="20" y2="9" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="20" y1="31" x2="20" y2="36" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="4" y1="20" x2="9" y2="20" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="31" y1="20" x2="36" y2="20" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="8.69" y1="8.69" x2="12.23" y2="12.23" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="27.77" y1="27.77" x2="31.31" y2="31.31" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="8.69" y1="31.31" x2="12.23" y2="27.77" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="27.77" y1="12.23" x2="31.31" y2="8.69" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1>Morning Affirmations</h1>
+        <p class="date" id="m-date"></p>
+      </div>
+      <div class="divider"></div>
+      <div class="card">
+        <span class="theme-label" id="m-theme"></span>
+        <p class="affirmation" id="m-affirmation"></p>
+        <button class="voice-btn" id="m-voice" aria-label="Read morning affirmation aloud">
+          <svg class="icon-play" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+          <svg class="icon-stop" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="voice-label">Read Aloud</span>
+        </button>
+      </div>
+      <div class="footer">
+        <p>Day <span class="day-count" id="m-day"></span> of <span id="m-total"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ EVENING ════════════════ -->
+  <section class="evening">
+    <div class="container">
+      <div class="header">
+        <div class="icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 20a12 12 0 0 1-16.97 10.9A14 14 0 1 0 22.1 8.03 12 12 0 0 1 28 20z" stroke="#a89cc8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="30" cy="8" r="1" fill="#a89cc8" opacity="0.6"/>
+            <circle cx="34" cy="14" r="0.7" fill="#a89cc8" opacity="0.4"/>
+            <circle cx="26" cy="5" r="0.5" fill="#a89cc8" opacity="0.5"/>
+          </svg>
+        </div>
+        <h1>Evening Affirmations</h1>
+        <p class="date" id="e-date"></p>
+      </div>
+      <div class="divider"></div>
+      <div class="card">
+        <span class="theme-label" id="e-theme"></span>
+        <p class="affirmation" id="e-affirmation"></p>
+        <button class="voice-btn" id="e-voice" aria-label="Read evening affirmation aloud">
+          <svg class="icon-play" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+          <svg class="icon-stop" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="voice-label">Read Aloud</span>
+        </button>
+      </div>
+      <div class="footer">
+        <p>Day <span class="day-count" id="e-day"></span> of <span id="e-total"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ COPYRIGHT ════════════════ -->
+  <footer class="copyright">
+    <p>&copy; <span id="copy-year"></span> Batt Insights. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ══════════════════════════════════════
+    // WAVING TEXT
+    // ══════════════════════════════════════
+    (function() {
+      const text = "Everyday Affirmations by Batt Insights";
+      const container = document.getElementById("wave-text");
+      let charIndex = 0;
+
+      text.split("").forEach((char, i) => {
+        if (char === " ") {
+          const space = document.createElement("span");
+          space.innerHTML = "&nbsp;";
+          space.style.width = "0.3em";
+          container.appendChild(space);
+        } else {
+          const span = document.createElement("span");
+          span.className = "wave-char";
+          span.textContent = char;
+          span.style.animationDelay = (charIndex * 0.07) + "s";
+          container.appendChild(span);
+          charIndex++;
+        }
+      });
+    })();
+    // ══════════════════════════════════════
+    // MORNING SENTENCE POOLS
+    // ══════════════════════════════════════
+    const morningPools = {
+      energy: [
+        "I am bursting with vitality and unstoppable energy today.",
+        "Every cell in my body radiates powerful, vibrant energy.",
+        "I wake with a fire inside me that fuels everything I do.",
+        "My energy is magnetic and draws greatness toward me.",
+        "I am recharged, renewed, and ready to conquer this day.",
+        "The universe fills me with boundless strength and stamina.",
+        "I channel my energy into meaningful, purposeful action.",
+        "My spirit is electric, and I light up every room I enter.",
+        "I am a powerhouse of focus, drive, and determination.",
+        "Every breath I take fills me with fresh, radiant energy.",
+        "I feel alive, awake, and absolutely unstoppable.",
+        "My enthusiasm is contagious and inspires those around me.",
+        "I possess an infinite wellspring of motivation within me.",
+        "Today I move through the world with grace and power.",
+        "I am energized by my purpose and passionate about my path.",
+        "My body is strong, my mind is sharp, and my spirit soars.",
+        "I greet this morning with fierce energy and gentle intention.",
+        "Every challenge today only amplifies my inner strength.",
+        "I am the spark that ignites positive change around me.",
+        "My vitality grows stronger with each passing moment.",
+      ],
+      positivity: [
+        "I choose joy, and joy chooses me right back.",
+        "Today is filled with infinite possibilities and beautiful moments.",
+        "I radiate positivity and attract wonderful experiences.",
+        "My smile has the power to brighten someone's entire day.",
+        "I see the beauty and goodness in every situation.",
+        "Happiness flows through me like a gentle, endless river.",
+        "I am a magnet for miracles, blessings, and good fortune.",
+        "My positive mindset transforms obstacles into stepping stones.",
+        "I spread light wherever I go, and darkness fades in my presence.",
+        "Today I choose to focus on what is bright, right, and good.",
+        "I am surrounded by love, laughter, and endless possibilities.",
+        "My optimism is a superpower that shapes my reality.",
+        "I find reasons to celebrate in even the smallest moments.",
+        "Every day is a fresh canvas, and I paint it with joy.",
+        "I release negativity and embrace the warmth of gratitude.",
+        "My heart overflows with appreciation for this beautiful life.",
+        "I trust that everything is unfolding perfectly for me.",
+        "I am worthy of all the happiness the world has to offer.",
+        "Positive thoughts create positive outcomes in my life.",
+        "I wake each morning knowing something wonderful awaits.",
+      ],
+      health: [
+        "My body is a temple, and I honor it with love and care.",
+        "Every choice I make today nourishes my mind, body, and soul.",
+        "I am healthy, whole, and full of vibrant life force.",
+        "My body heals, strengthens, and renews itself every single day.",
+        "I listen to my body's wisdom and give it what it truly needs.",
+        "I am grateful for the miracle of my strong, capable body.",
+        "Wellness flows through every fiber of my being.",
+        "I treat myself with the tenderness and care I deserve.",
+        "My immune system is powerful, resilient, and always protecting me.",
+        "I nourish my body with wholesome food, movement, and rest.",
+        "Every heartbeat is a reminder of the precious gift of life.",
+        "I am in perfect harmony with my body's natural rhythms.",
+        "My mental health is a priority, and I protect it with care.",
+        "I breathe deeply, releasing tension and welcoming peace.",
+        "I am becoming healthier, stronger, and more vibrant each day.",
+        "Sleep comes easily to me, and I wake feeling fully restored.",
+        "I honor my body by moving it with joy and intention.",
+        "My mind is calm, my body is relaxed, and my spirit is at ease.",
+        "I choose habits that support my long-term wellbeing.",
+        "Every day I grow closer to the healthiest version of myself.",
+      ],
+      family: [
+        "My family is my greatest treasure, and I cherish every moment together.",
+        "I am surrounded by people who love me unconditionally.",
+        "I create a home filled with warmth, safety, and belonging.",
+        "The bonds I share with my loved ones grow deeper every day.",
+        "I am both a giver and receiver of profound, generous love.",
+        "I show up for my family with patience, kindness, and presence.",
+        "My relationships are built on trust, respect, and understanding.",
+        "I am grateful for the laughter and love that fills my home.",
+        "I nurture my connections and make time for those who matter most.",
+        "My family supports my dreams, and I wholeheartedly support theirs.",
+        "I communicate with openness and listen with compassion.",
+        "Love is the foundation of my household, and it grows daily.",
+        "I forgive freely and hold my loved ones close to my heart.",
+        "I am building a legacy of love that will last for generations.",
+        "My presence brings comfort and joy to those around me.",
+        "I attract loving, supportive, and uplifting relationships.",
+        "I choose to see the best in the people I love.",
+        "My home is a sanctuary of peace, love, and laughter.",
+        "I am deeply connected to the people who matter most in my life.",
+        "Every day I strengthen the bonds that make my life rich.",
+      ],
+      growth: [
+        "I am constantly evolving into a better version of myself.",
+        "Every experience, even the difficult ones, teaches me something valuable.",
+        "I embrace change as the gateway to my greatest growth.",
+        "My potential is limitless, and I am just getting started.",
+        "I am open to learning, unlearning, and relearning every day.",
+        "I celebrate my progress, no matter how small it may seem.",
+        "Challenges are opportunities for me to rise and expand.",
+        "I invest in myself because I am my greatest asset.",
+        "My comfort zone is expanding, and I welcome the unfamiliar.",
+        "I am patient with my journey and trust the process completely.",
+        "Every day I gain new skills, insights, and wisdom.",
+        "I am not defined by my past — I am shaped by my potential.",
+        "I have the courage to pursue the life I truly want.",
+        "Growth is my natural state, and I lean into it with grace.",
+        "I welcome feedback as a gift that accelerates my development.",
+        "My mistakes are stepping stones, not stumbling blocks.",
+        "I am resilient, adaptable, and always moving forward.",
+        "I set meaningful goals and take consistent action toward them.",
+        "The best version of me is still being written, and that excites me.",
+        "I grow stronger, wiser, and more confident with each new day.",
+      ],
+      wealth: [
+        "Abundance flows freely and effortlessly into my life.",
+        "I am worthy of financial prosperity and success.",
+        "My relationship with money is healthy, positive, and empowering.",
+        "I attract lucrative opportunities with ease and confidence.",
+        "I am a wise steward of my resources, and they multiply.",
+        "Wealth comes to me from expected and unexpected sources.",
+        "I release all limiting beliefs about money and embrace abundance.",
+        "My income grows consistently, and I manage it with wisdom.",
+        "I am grateful for the financial blessings in my life.",
+        "I create value in the world, and the world rewards me generously.",
+        "Financial freedom is my reality, and I am building it every day.",
+        "I deserve to live a life of comfort, security, and plenty.",
+        "Money is a tool, and I use it to create good in the world.",
+        "I think abundantly, act generously, and receive graciously.",
+        "Prosperity is drawn to me because I am aligned with abundance.",
+        "I make smart financial decisions that secure my future.",
+        "My wealth allows me to live fully and give back freely.",
+        "I am open to receiving all the abundance the universe offers.",
+        "Every day I move closer to complete financial independence.",
+        "I am building lasting wealth for myself and future generations.",
+      ],
+    };
+
+    // ══════════════════════════════════════
+    // EVENING SENTENCE POOLS
+    // ══════════════════════════════════════
+    const eveningPools = {
+      calmness: [
+        "I release the weight of this day and welcome deep stillness.",
+        "My mind is quiet, my thoughts are gentle, and I am at peace.",
+        "I let go of every worry and trust that all is well.",
+        "Serenity washes over me like a warm, calming wave.",
+        "I give myself permission to simply be still tonight.",
+        "Each slow breath carries away tension and invites tranquility.",
+        "The noise of the world fades, and I rest in beautiful silence.",
+        "I am safe, I am calm, and I am exactly where I need to be.",
+        "Peace fills every corner of my mind as the day comes to a close.",
+        "I surrender control and allow the evening to hold me gently.",
+        "My heart is light, my shoulders are soft, and my soul is quiet.",
+        "I choose peace over perfection as I close this chapter of the day.",
+        "Tonight I am wrapped in comfort and deep, soothing calm.",
+        "I release all tension from my body, one breath at a time.",
+        "The gentle rhythm of the night brings me perfect stillness.",
+        "I am grateful for this quiet moment to simply exist in peace.",
+        "My nervous system settles, and I melt into relaxation.",
+        "I trust the night to restore what the day has asked of me.",
+        "Calmness is my companion tonight, and I welcome it fully.",
+        "I close my eyes knowing that peace lives within me always.",
+      ],
+      fulfillment: [
+        "I am proud of everything I accomplished today, big and small.",
+        "Today I showed up as my best self, and that is enough.",
+        "I gave this day my honest effort, and I am fulfilled by that.",
+        "My heart is full of gratitude for the life I am living.",
+        "I celebrate today's victories, no matter how quiet they were.",
+        "I made a difference today, even in ways I may never fully know.",
+        "I am content with who I am becoming through each day's effort.",
+        "Today added another beautiful chapter to the story of my life.",
+        "I honor the work I did today and the person I was while doing it.",
+        "I find deep satisfaction in knowing I lived today with intention.",
+        "The seeds I planted today will bloom in ways that surprise me.",
+        "I am enough, I have done enough, and I have given enough today.",
+        "I end this day feeling richer in experience and wisdom.",
+        "My efforts today are quietly shaping an extraordinary future.",
+        "I embrace the fullness of this day with a grateful heart.",
+        "Every kind word I spoke today echoes into tomorrow.",
+        "I am exactly where I need to be on my journey, and today proved it.",
+        "The simple moments of today brought me unexpected joy.",
+        "I am proud of the grace I showed myself and others today.",
+        "This day, with all its imperfections, was beautifully mine.",
+      ],
+      dreams: [
+        "As I sleep, my mind opens to beautiful and inspiring visions.",
+        "My dreams tonight will be gentle, vivid, and filled with wonder.",
+        "I welcome the wisdom that comes to me through my dreams.",
+        "Tonight my subconscious weaves stories of hope and possibility.",
+        "I drift into a dream world where anything is possible.",
+        "My dreams are a safe space where creativity flows endlessly.",
+        "I invite only peaceful, uplifting dreams into my sleep tonight.",
+        "As I rest, my imagination paints beautiful landscapes of possibility.",
+        "My dreams are a bridge between who I am and who I am becoming.",
+        "Tonight I dream boldly and wake inspired to make those dreams real.",
+        "I release the day and open my mind to the magic of dreaming.",
+        "My dreams carry messages of guidance and clarity for tomorrow.",
+        "I trust my sleeping mind to process, heal, and create overnight.",
+        "Beautiful visions await me as I gently drift to sleep.",
+        "My dreams tonight are seeds of inspiration for the days ahead.",
+        "I enter my dream space with an open heart and peaceful mind.",
+        "As the world quiets, my inner world comes alive with possibility.",
+        "I look forward to the adventures my sleeping mind will create.",
+        "My dreams nurture my spirit and refresh my sense of wonder.",
+        "Tonight I dream without limits and wake with renewed purpose.",
+      ],
+      lifeGoals: [
+        "I am steadily building the life I have always envisioned.",
+        "Every day brings me closer to the future I am creating for myself.",
+        "My goals are clear, my path is unfolding, and I trust the journey.",
+        "I am aligning my actions with my deepest desires and highest purpose.",
+        "The vision I hold for my life is becoming more real every single day.",
+        "I am worthy of the extraordinary life I am working toward.",
+        "My dreams are not too big — they are exactly the right size for me.",
+        "I trust that my dedication today is building my dream tomorrow.",
+        "I am writing a life story that fills me with pride and purpose.",
+        "Every step I take, even the small ones, moves me toward greatness.",
+        "I have the clarity, courage, and commitment to achieve my goals.",
+        "My future is bright because I am intentional about creating it.",
+        "I believe deeply in the life I am building, and I will not give up.",
+        "I end today knowing I am one step closer to my biggest aspirations.",
+        "The goals that excite me most are the ones I am meant to pursue.",
+        "I am patient with my timeline and persistent in my effort.",
+        "My life purpose reveals itself more clearly with each passing day.",
+        "I am not chasing a dream — I am building it, brick by brick.",
+        "The life I want is not a fantasy; it is a plan in motion.",
+        "I fall asleep tonight knowing tomorrow brings fresh opportunities to grow.",
+      ],
+      family: [
+        "I am grateful for every moment I shared with my loved ones today.",
+        "My family is my anchor, and their love fills me with peace tonight.",
+        "I send silent blessings to everyone I love as the day ends.",
+        "The love I gave and received today makes my life deeply meaningful.",
+        "I am thankful for the people who make my house feel like home.",
+        "Tonight I hold my family close in my heart and release all worries for them.",
+        "I am a source of comfort and stability for those I love.",
+        "My loved ones know they are cherished, and that brings me deep peace.",
+        "I end this day feeling connected to the people who matter most.",
+        "I forgive any tension from today and choose love as my lasting memory.",
+        "My family's laughter is the sweetest sound I carry into the night.",
+        "I am building a home full of memories that will warm us for a lifetime.",
+        "The love in my family grows stronger, even through imperfect days.",
+        "I release any guilt from today and trust that my love is always enough.",
+        "Tonight I am surrounded, even in silence, by the love of my people.",
+        "I appreciate the small, tender moments I shared with my family today.",
+        "My children, my partner, my parents — they are my greatest blessings.",
+        "I am grateful that no matter how the day went, I come home to love.",
+        "I am planting seeds of kindness and love that my family will harvest for years.",
+        "As the day closes, I hold gratitude for every hug, smile, and shared silence.",
+      ],
+      rest: [
+        "My body deserves this rest, and I give it freely and fully.",
+        "I surrender to sleep knowing my body will restore itself beautifully.",
+        "Rest is not a luxury — it is essential, and I embrace it tonight.",
+        "I allow every muscle to soften and every thought to dissolve into quiet.",
+        "Tonight I sleep deeply, peacefully, and without interruption.",
+        "My bedroom is a sanctuary, and I am safe to let go completely.",
+        "I have earned this rest, and I receive it with gratitude.",
+        "My body knows how to heal and recharge while I sleep.",
+        "I release the need to do anything more — this moment is for rest.",
+        "Sleep is my gift to myself tonight, and I accept it wholeheartedly.",
+        "I trust my body to do its quiet, powerful work while I rest.",
+        "I let go of tomorrow's worries and sink into the comfort of now.",
+        "Every breath slows me down, bringing me closer to perfect rest.",
+        "I am worthy of deep, uninterrupted, nourishing sleep.",
+        "The night cradles me gently as I drift into peaceful slumber.",
+        "My mind grows quieter with each passing moment, and sleep draws near.",
+        "I release this day with love and welcome the healing power of rest.",
+        "Tonight my body, mind, and spirit are fully restored through sleep.",
+        "I let the softness of my pillow remind me that comfort is mine.",
+        "I close this day in peace and open the door to restorative sleep.",
+      ],
+    };
+
+    // ══════════════════════════════════════
+    // THEME CONFIG
+    // ══════════════════════════════════════
+    const morningThemes = ["energy", "positivity", "health", "family", "growth", "wealth"];
+    const morningLabels = {
+      energy: "Energy & Vitality", positivity: "Positivity & Joy", health: "Health & Wellness",
+      family: "Family & Love", growth: "Growth & Purpose", wealth: "Wealth & Abundance",
+    };
+
+    const eveningThemes = ["calmness", "fulfillment", "dreams", "lifeGoals", "family", "rest"];
+    const eveningLabels = {
+      calmness: "Calmness & Peace", fulfillment: "Fulfillment & Gratitude", dreams: "Dreams & Imagination",
+      lifeGoals: "Life Goals & Vision", family: "Family & Love", rest: "Rest & Restoration",
+    };
+
+    // ══════════════════════════════════════
+    // UTILITIES
+    // ══════════════════════════════════════
+    function seededRandom(seed) {
+      let s = seed % 2147483647;
+      if (s <= 0) s += 2147483646;
+      return function () {
+        s = (s * 16807) % 2147483647;
+        return (s - 1) / 2147483646;
+      };
+    }
+
+    function isLeapYear(year) {
+      return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+
+    function getDayOfYear(date) {
+      const start = new Date(date.getFullYear(), 0, 0);
+      return Math.floor((date - start) / (1000 * 60 * 60 * 24));
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString("en-US", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric",
+      });
+    }
+
+    function buildParagraph(pools, themes, labels, seed, dayOfYear) {
+      const rng = seededRandom(seed);
+      const primaryIdx = (dayOfYear - 1) % themes.length;
+      const primaryTheme = themes[primaryIdx];
+      const primary = [...pools[primaryTheme]];
+      const selected = [];
+
+      function pick(arr) {
+        const idx = Math.floor(rng() * arr.length);
+        return arr.splice(idx, 1)[0];
+      }
+
+      for (let i = 0; i < 4; i++) selected.push(pick(primary));
+
+      const others = themes.filter(t => t !== primaryTheme);
+      const s1 = others[Math.floor(rng() * others.length)];
+      const rest = others.filter(t => t !== s1);
+      const s2 = rest[Math.floor(rng() * rest.length)];
+      selected.push(pick([...pools[s1]]));
+      selected.push(pick([...pools[s2]]));
+
+      return { theme: labels[primaryTheme], paragraph: selected.join(" ") };
+    }
+
+    // ══════════════════════════════════════
+    // RENDER
+    // ══════════════════════════════════════
+    const today = new Date();
+    const year = today.getFullYear();
+    const dayOfYear = getDayOfYear(today);
+    const totalDays = isLeapYear(year) ? 366 : 365;
+    const dateStr = formatDate(today);
+
+    const morning = buildParagraph(morningPools, morningThemes, morningLabels, year * 1000 + dayOfYear, dayOfYear);
+    document.getElementById("m-date").textContent = dateStr;
+    document.getElementById("m-theme").textContent = morning.theme;
+    document.getElementById("m-affirmation").textContent = morning.paragraph;
+    document.getElementById("m-day").textContent = dayOfYear;
+    document.getElementById("m-total").textContent = totalDays;
+
+    const evening = buildParagraph(eveningPools, eveningThemes, eveningLabels, year * 1000 + dayOfYear + 500000, dayOfYear);
+    document.getElementById("e-date").textContent = dateStr;
+    document.getElementById("e-theme").textContent = evening.theme;
+    document.getElementById("e-affirmation").textContent = evening.paragraph;
+    document.getElementById("e-day").textContent = dayOfYear;
+    document.getElementById("e-total").textContent = totalDays;
+
+    // ══════════════════════════════════════
+    // VOICE (Web Speech API)
+    // ══════════════════════════════════════
+    function setupVoice(btnId, text) {
+      const btn = document.getElementById(btnId);
+      const playIcon = btn.querySelector(".icon-play");
+      const stopIcon = btn.querySelector(".icon-stop");
+      const label = btn.querySelector(".voice-label");
+      let speaking = false;
+
+      function stop() {
+        speechSynthesis.cancel();
+        speaking = false;
+        btn.classList.remove("speaking");
+        playIcon.style.display = "";
+        stopIcon.style.display = "none";
+        label.textContent = "Read Aloud";
+      }
+
+      function start() {
+        speechSynthesis.cancel();
+        document.querySelectorAll(".voice-btn.speaking").forEach(b => {
+          b.classList.remove("speaking");
+          b.querySelector(".icon-play").style.display = "";
+          b.querySelector(".icon-stop").style.display = "none";
+          b.querySelector(".voice-label").textContent = "Read Aloud";
+        });
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.92;
+        utterance.pitch = 1.0;
+
+        const voices = speechSynthesis.getVoices();
+        const preferred = voices.find(v =>
+          v.lang.startsWith("en") && (v.name.includes("Samantha") || v.name.includes("Google") || v.name.includes("Natural"))
+        ) || voices.find(v => v.lang.startsWith("en"));
+        if (preferred) utterance.voice = preferred;
+
+        utterance.onend = stop;
+        utterance.onerror = stop;
+
+        speechSynthesis.speak(utterance);
+        speaking = true;
+        btn.classList.add("speaking");
+        playIcon.style.display = "none";
+        stopIcon.style.display = "";
+        label.textContent = "Stop";
+      }
+
+      btn.addEventListener("click", () => {
+        if (speaking) { stop(); } else { start(); }
+      });
+    }
+
+    setupVoice("m-voice", morning.paragraph);
+    setupVoice("e-voice", evening.paragraph);
+
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = () => {};
+    }
+
+    // Copyright year
+    document.getElementById("copy-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
