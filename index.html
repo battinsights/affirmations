@@ -3,319 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Affirmations</title>
+  <title>Daily Affirmations | Өдөр тутмын эерэг үгс</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Nunito', sans-serif; font-weight: 300; margin: 0; overflow-x: hidden; }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 300;
-      margin: 0;
-      overflow-x: hidden;
-    }
-
-    /* ═══════════════════════════════════
-       MORNING SECTION
-    ═══════════════════════════════════ */
     .morning {
-      background: #f8f5f0;
-      color: #4a4340;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 1.25rem;
-      position: relative;
+      background: #f8f5f0; color: #4a4340; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 1.25rem; position: relative;
     }
-
     .morning::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.03;
+      content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-size: 256px 256px;
-      pointer-events: none;
+      background-size: 256px;
     }
-
     .morning::after {
-      content: '';
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(196, 168, 130, 0.08) 0%, transparent 70%);
-      pointer-events: none;
+      content: ''; position: absolute; top: -20%; right: -10%; width: 60vw; height: 60vw;
+      background: radial-gradient(circle, rgba(196,168,130,0.08) 0%, transparent 70%); pointer-events: none;
     }
-
     .morning .container { --accent: #c4a882; --accent-soft: #e8ddd0; --border: #ece6de; --bg-card: #fffdf9; --text: #4a4340; --text-light: #9b918a; }
 
-    /* ═══════════════════════════════════
-       EVENING SECTION
-    ═══════════════════════════════════ */
     .evening {
-      background: #1a1a2e;
-      color: #e0dbd3;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 1.25rem;
-      position: relative;
+      background: #1a1a2e; color: #e0dbd3; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 1.25rem; position: relative;
     }
-
     .evening::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.04;
+      content: ''; position: absolute; inset: 0; opacity: 0.04; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise2)'/%3E%3C/svg%3E");
-      background-size: 256px 256px;
-      pointer-events: none;
+      background-size: 256px;
     }
-
     .evening::after {
-      content: '';
-      position: absolute;
-      bottom: -15%;
-      left: -10%;
-      width: 55vw;
-      height: 55vw;
-      background: radial-gradient(circle, rgba(120, 100, 180, 0.07) 0%, transparent 70%);
-      pointer-events: none;
+      content: ''; position: absolute; bottom: -15%; left: -10%; width: 55vw; height: 55vw;
+      background: radial-gradient(circle, rgba(120,100,180,0.07) 0%, transparent 70%); pointer-events: none;
     }
-
     .evening .container { --accent: #a89cc8; --accent-soft: #3d3a52; --border: #2e2b45; --bg-card: #22213a; --text: #e0dbd3; --text-light: #8a8499; }
 
-    /* ═══════════════════════════════════
-       SHARED STYLES
-    ═══════════════════════════════════ */
-    .container {
-      max-width: 620px;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      animation: fadeDown 1s ease both;
-    }
-
-    .icon {
-      width: 40px;
-      height: 40px;
-      margin: 0 auto 1rem;
-      opacity: 0.7;
-    }
-
+    .container { max-width: 620px; width: 100%; position: relative; z-index: 1; }
+    .header { text-align: center; margin-bottom: 2.5rem; animation: fadeDown 1s ease both; }
+    .icon { width: 40px; height: 40px; margin: 0 auto 1rem; opacity: 0.7; }
     .icon svg { width: 100%; height: 100%; }
-
-    .header h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 2rem;
-      letter-spacing: 0.03em;
-      color: var(--text);
-      margin-bottom: 0.35rem;
-    }
-
-    .header .date {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .divider {
-      width: 48px;
-      height: 1px;
-      background: var(--accent);
-      margin: 0 auto 2.5rem;
-      opacity: 0.5;
-      animation: fadeIn 1.2s ease both 0.3s;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem 2.25rem;
-      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
-      animation: fadeUp 1s ease both 0.4s;
-    }
-
-    .theme-label {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-soft);
-      border-radius: 100px;
-      padding: 0.3rem 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .affirmation {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 1.3rem;
-      line-height: 1.85;
-      color: var(--text);
-    }
-
-    .voice-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin: 1.5rem auto 0;
-      padding: 0.6rem 1.4rem;
-      background: transparent;
-      border: 1px solid var(--accent-soft);
-      border-radius: 100px;
-      color: var(--accent);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 400;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .voice-btn:hover {
-      background: var(--accent);
-      color: var(--bg-card);
-      border-color: var(--accent);
-    }
-
+    .header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 2rem; letter-spacing: 0.03em; color: var(--text); margin-bottom: 0.35rem; }
+    .header .date { font-size: 0.85rem; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; }
+    .divider { width: 48px; height: 1px; background: var(--accent); margin: 0 auto 2.5rem; opacity: 0.5; animation: fadeIn 1.2s ease both 0.3s; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem 2.25rem; box-shadow: 0 2px 24px rgba(0,0,0,0.06); animation: fadeUp 1s ease both 0.4s; }
+    .theme-label { display: inline-block; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-soft); border-radius: 100px; padding: 0.3rem 0.9rem; margin-bottom: 1.5rem; }
+    .affirmation { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.3rem; line-height: 1.85; color: var(--text); }
+    .voice-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 1.5rem auto 0; padding: 0.6rem 1.4rem; background: transparent; border: 1px solid var(--accent-soft); border-radius: 100px; color: var(--accent); font-family: 'Nunito', sans-serif; font-weight: 400; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; }
+    .voice-btn:hover { background: var(--accent); color: var(--bg-card); border-color: var(--accent); }
     .voice-btn:hover svg { stroke: var(--bg-card); }
-
-    .voice-btn svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--accent);
-      fill: none;
-      transition: stroke 0.3s ease;
-    }
-
-    .voice-btn.speaking {
-      background: var(--accent);
-      color: var(--bg-card);
-      border-color: var(--accent);
-    }
-
+    .voice-btn svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; transition: stroke 0.3s ease; }
+    .voice-btn.speaking { background: var(--accent); color: var(--bg-card); border-color: var(--accent); }
     .voice-btn.speaking svg { stroke: var(--bg-card); }
-
-    .footer {
-      text-align: center;
-      margin-top: 2.5rem;
-      animation: fadeIn 1s ease both 0.8s;
-    }
-
-    .footer p {
-      font-size: 0.78rem;
-      color: var(--text-light);
-      letter-spacing: 0.04em;
-    }
-
+    .footer { text-align: center; margin-top: 2.5rem; animation: fadeIn 1s ease both 0.8s; }
+    .footer p { font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.04em; }
     .day-count { font-weight: 400; }
 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* ═══════════════════════════════════
-       WAVING BANNER
-    ═══════════════════════════════════ */
-    .banner {
-      text-align: center;
-      padding: 2.5rem 1.25rem 0;
-      position: relative;
-      z-index: 1;
-    }
-
+    .banner { text-align: center; padding: 2.5rem 1.25rem 0; position: relative; z-index: 1; }
     .banner.morning-mode { background: #f8f5f0; }
     .banner.morning-mode .wave-text { color: #4a4340; }
     .banner.evening-mode { background: #1a1a2e; }
     .banner.evening-mode .wave-text { color: #e0dbd3; }
+    .wave-text { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.05rem; letter-spacing: 0.04em; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0 0.3em; }
+    .wave-text .wave-char { display: inline-block; animation: wave 3s ease-in-out infinite; }
+    @keyframes wave { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
 
-    .wave-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 1.05rem;
-      letter-spacing: 0.04em;
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0 0.3em;
-    }
+    .lang-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 100; display: flex; align-items: center; gap: 0.4rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 100px; padding: 0.35rem 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Nunito', sans-serif; font-weight: 400; user-select: none; }
+    .lang-toggle.morning-mode { background: rgba(74,67,64,0.06); border: 1px solid rgba(74,67,64,0.12); color: #9b918a; }
+    .lang-toggle.evening-mode { background: rgba(168,156,200,0.1); border: 1px solid rgba(168,156,200,0.2); color: #8a8499; }
+    .lang-toggle:hover { transform: scale(1.05); }
+    .lang-flag { font-size: 1.1rem; line-height: 1; }
+    .lang-label { font-size: 0.68rem; }
 
-    .wave-text .wave-char {
-      display: inline-block;
-      animation: wave 3s ease-in-out infinite;
-    }
-
-    @keyframes wave {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    /* ═══════════════════════════════════
-       COPYRIGHT FOOTER
-    ═══════════════════════════════════ */
-    .copyright {
-      text-align: center;
-      padding: 2rem 1.25rem;
-    }
-
-    .copyright.morning-mode {
-      background: #f8f5f0;
-      border-top: 1px solid #ece6de;
-    }
-
-    .copyright.morning-mode p {
-      color: #9b918a;
-    }
-
-    .copyright.evening-mode {
-      background: #141425;
-      border-top: 1px solid #2e2b45;
-    }
-
-    .copyright.evening-mode p {
-      color: #6b6580;
-    }
-
-    .copyright p {
+    /* Music toggle */
+    .music-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
       font-family: 'Nunito', sans-serif;
-      font-weight: 300;
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      color: #6b6580;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      user-select: none;
     }
+    .music-toggle.morning-mode { background: rgba(74,67,64,0.06); border: 1px solid rgba(74,67,64,0.12); color: #9b918a; }
+    .music-toggle.evening-mode { background: rgba(168,156,200,0.1); border: 1px solid rgba(168,156,200,0.2); color: #8a8499; }
+    .music-toggle:hover { transform: scale(1.05); }
+    .music-toggle svg { width: 16px; height: 16px; }
+
+    /* Animated bars when playing */
+    .music-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
+    .music-bars .bar {
+      width: 2.5px;
+      border-radius: 1px;
+      animation: none;
+    }
+    .music-toggle.morning-mode .bar { background: #c4a882; }
+    .music-toggle.evening-mode .bar { background: #a89cc8; }
+    .music-toggle.playing .bar { animation: barPulse 0.8s ease-in-out infinite; }
+    .music-bars .bar:nth-child(1) { height: 5px; animation-delay: 0s; }
+    .music-bars .bar:nth-child(2) { height: 9px; animation-delay: 0.15s; }
+    .music-bars .bar:nth-child(3) { height: 7px; animation-delay: 0.3s; }
+    .music-bars .bar:nth-child(4) { height: 11px; animation-delay: 0.1s; }
+
+    @keyframes barPulse {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+
+    .copyright { text-align: center; padding: 2rem 1.25rem; }
+    .copyright.morning-mode { background: #f8f5f0; border-top: 1px solid #ece6de; }
+    .copyright.morning-mode p { color: #9b918a; }
+    .copyright.evening-mode { background: #141425; border-top: 1px solid #2e2b45; }
+    .copyright.evening-mode p { color: #6b6580; }
+    .copyright p { font-family: 'Nunito', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.06em; }
 
     .hidden { display: none !important; }
 
@@ -328,14 +148,26 @@
   </style>
 </head>
 <body>
+  <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+    <span class="lang-flag" id="lang-flag">🇲🇳</span>
+    <span class="lang-label" id="lang-label">МОН</span>
+  </button>
 
-  <!-- ════════════════ WAVING BANNER ════════════════ -->
-  <div class="banner">
+  <button class="music-toggle" id="music-toggle" aria-label="Toggle background music">
+    <div class="music-bars">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <span id="music-label">Music</span>
+  </button>
+
+  <div class="banner" id="banner">
     <div class="wave-text" id="wave-text"></div>
   </div>
 
-  <!-- ════════════════ MORNING ════════════════ -->
-  <section class="morning">
+  <section class="morning" id="sec-morning">
     <div class="container">
       <div class="header">
         <div class="icon">
@@ -351,102 +183,58 @@
             <line x1="27.77" y1="12.23" x2="31.31" y2="8.69" stroke="#c4a882" stroke-width="1.2" stroke-linecap="round"/>
           </svg>
         </div>
-        <h1>Morning Affirmations</h1>
+        <h1 id="m-title">Morning Affirmations</h1>
         <p class="date" id="m-date"></p>
       </div>
       <div class="divider"></div>
       <div class="card">
         <span class="theme-label" id="m-theme"></span>
         <p class="affirmation" id="m-affirmation"></p>
-        <button class="voice-btn" id="m-voice" aria-label="Read morning affirmation aloud">
-          <svg class="icon-play" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-          </svg>
-          <svg class="icon-stop" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/>
-          </svg>
+        <button class="voice-btn" id="m-voice" aria-label="Read aloud">
+          <svg class="icon-play" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-stop" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/></svg>
           <span class="voice-label">Read Aloud</span>
         </button>
       </div>
-      <div class="footer">
-        <p>Day <span class="day-count" id="m-day"></span> of <span id="m-total"></span></p>
-      </div>
+      <div class="footer"><p><span id="m-day-label">Day</span> <span class="day-count" id="m-day"></span> <span id="m-of-label">of</span> <span id="m-total"></span></p></div>
     </div>
   </section>
 
-  <!-- ════════════════ EVENING ════════════════ -->
-  <section class="evening">
+  <section class="evening" id="sec-evening">
     <div class="container">
       <div class="header">
         <div class="icon">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M28 20a12 12 0 0 1-16.97 10.9A14 14 0 1 0 22.1 8.03 12 12 0 0 1 28 20z" stroke="#a89cc8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="30" cy="8" r="1" fill="#a89cc8" opacity="0.6"/>
-            <circle cx="34" cy="14" r="0.7" fill="#a89cc8" opacity="0.4"/>
-            <circle cx="26" cy="5" r="0.5" fill="#a89cc8" opacity="0.5"/>
+            <circle cx="30" cy="8" r="1" fill="#a89cc8" opacity="0.6"/><circle cx="34" cy="14" r="0.7" fill="#a89cc8" opacity="0.4"/><circle cx="26" cy="5" r="0.5" fill="#a89cc8" opacity="0.5"/>
           </svg>
         </div>
-        <h1>Evening Affirmations</h1>
+        <h1 id="e-title">Evening Affirmations</h1>
         <p class="date" id="e-date"></p>
       </div>
       <div class="divider"></div>
       <div class="card">
         <span class="theme-label" id="e-theme"></span>
         <p class="affirmation" id="e-affirmation"></p>
-        <button class="voice-btn" id="e-voice" aria-label="Read evening affirmation aloud">
-          <svg class="icon-play" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-          </svg>
-          <svg class="icon-stop" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/>
-          </svg>
+        <button class="voice-btn" id="e-voice" aria-label="Read aloud">
+          <svg class="icon-play" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-stop" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/></svg>
           <span class="voice-label">Read Aloud</span>
         </button>
       </div>
-      <div class="footer">
-        <p>Day <span class="day-count" id="e-day"></span> of <span id="e-total"></span></p>
-      </div>
+      <div class="footer"><p><span id="e-day-label">Day</span> <span class="day-count" id="e-day"></span> <span id="e-of-label">of</span> <span id="e-total"></span></p></div>
     </div>
   </section>
 
-  <!-- ════════════════ COPYRIGHT ════════════════ -->
-  <footer class="copyright">
-    <p>&copy; <span id="copy-year"></span> Batt Insights. All rights reserved.</p>
+  <footer class="copyright" id="copyright">
+    <p>&copy; <span id="copy-year"></span> Batt Insights. <span id="copyright-text">All rights reserved.</span></p>
   </footer>
 
   <script>
     // ══════════════════════════════════════
-    // WAVING TEXT
+    // ENGLISH MORNING POOLS
     // ══════════════════════════════════════
-    (function() {
-      const text = "Everyday Affirmations by Batt Insights";
-      const container = document.getElementById("wave-text");
-      let charIndex = 0;
-
-      text.split("").forEach((char, i) => {
-        if (char === " ") {
-          const space = document.createElement("span");
-          space.innerHTML = "&nbsp;";
-          space.style.width = "0.3em";
-          container.appendChild(space);
-        } else {
-          const span = document.createElement("span");
-          span.className = "wave-char";
-          span.textContent = char;
-          span.style.animationDelay = (charIndex * 0.07) + "s";
-          container.appendChild(span);
-          charIndex++;
-        }
-      });
-    })();
-    // ══════════════════════════════════════
-    // MORNING SENTENCE POOLS
-    // ══════════════════════════════════════
-    const morningPools = {
+    const enMorningPools = {
       energy: [
         "I am bursting with vitality and unstoppable energy today.",
         "Every cell in my body radiates powerful, vibrant energy.",
@@ -582,9 +370,9 @@
     };
 
     // ══════════════════════════════════════
-    // EVENING SENTENCE POOLS
+    // ENGLISH EVENING POOLS (no Dreams)
     // ══════════════════════════════════════
-    const eveningPools = {
+    const enEveningPools = {
       calmness: [
         "I release the weight of this day and welcome deep stillness.",
         "My mind is quiet, my thoughts are gentle, and I am at peace.",
@@ -628,28 +416,6 @@
         "The simple moments of today brought me unexpected joy.",
         "I am proud of the grace I showed myself and others today.",
         "This day, with all its imperfections, was beautifully mine.",
-      ],
-      dreams: [
-        "As I sleep, my mind opens to beautiful and inspiring visions.",
-        "My dreams tonight will be gentle, vivid, and filled with wonder.",
-        "I welcome the wisdom that comes to me through my dreams.",
-        "Tonight my subconscious weaves stories of hope and possibility.",
-        "I drift into a dream world where anything is possible.",
-        "My dreams are a safe space where creativity flows endlessly.",
-        "I invite only peaceful, uplifting dreams into my sleep tonight.",
-        "As I rest, my imagination paints beautiful landscapes of possibility.",
-        "My dreams are a bridge between who I am and who I am becoming.",
-        "Tonight I dream boldly and wake inspired to make those dreams real.",
-        "I release the day and open my mind to the magic of dreaming.",
-        "My dreams carry messages of guidance and clarity for tomorrow.",
-        "I trust my sleeping mind to process, heal, and create overnight.",
-        "Beautiful visions await me as I gently drift to sleep.",
-        "My dreams tonight are seeds of inspiration for the days ahead.",
-        "I enter my dream space with an open heart and peaceful mind.",
-        "As the world quiets, my inner world comes alive with possibility.",
-        "I look forward to the adventures my sleeping mind will create.",
-        "My dreams nurture my spirit and refresh my sense of wonder.",
-        "Tonight I dream without limits and wake with renewed purpose.",
       ],
       lifeGoals: [
         "I am steadily building the life I have always envisioned.",
@@ -720,172 +486,634 @@
     };
 
     // ══════════════════════════════════════
+    // MONGOLIAN MORNING POOLS
+    // ══════════════════════════════════════
+    const mnMorningPools = {
+      energy: [
+        "Би өнөөдөр эрч хүчээр дүүрэн сэрлээ.",
+        "Миний биеийн эс бүр эрүүл, амьд эрч хүчээр дүүрэн байна.",
+        "Би дотоод хүчээ мэдэрч, өдрийг итгэлтэй эхлүүлж байна.",
+        "Миний энерги бусдыг татах эерэг хүч юм.",
+        "Би шинэ сэргэгээр энэ өдрийг амжилттай өнгөрүүлэхэд бэлэн.",
+        "Би хязгааргүй их боломж, хүч чадлыг өөртөө мэдэрч байна.",
+        "Би энергиэ зорилготой, утга учиртай зүйлд зарцуулна.",
+        "Миний оролцоо байгаа орчныг минь гэрэлтүүлдэг.",
+        "Би бүрэн төвлөрч чаддаг, шийдэмгий, хөдөлгөгч хүн.",
+        "Амьсгал бүр минь намайг шинэ эрч хүчээр дүүргэдэг.",
+        "Би сэргэлэн, сонор соргог, хүчтэй байна.",
+        "Миний урам зориг бусдад ч нөлөөлдөг.",
+        "Миний дотор урам зоригийн тасралтгүй эх булаг бий.",
+        "Би өнөөдөр хүчтэй, ухаалгаар урагшилна.",
+        "Би зорилгодоо дуртай, замдаа итгэлтэй алхаж байна.",
+        "Миний бие хүчтэй, оюун минь тод.",
+        "Би өглөө бүр эерэг сэтгэл, эрч хүчтэй угтдаг.",
+        "Өнөөдрийн сорилт бүр намайг улам хүчирхэг болгоно.",
+        "Би орчиндоо эерэг өөрчлөлт авчирдаг.",
+        "Миний эрч хүч цаг өнгөрөх тусам улам нэмэгдэж байна.",
+      ],
+      positivity: [
+        "Би баяр баяслыг сонгодог.",
+        "Өнөөдөр боломж, сайхан мөчөөр дүүрэн.",
+        "Би эерэг энергийг түгээж, сайхан зүйлсийг татна.",
+        "Миний инээмсэглэл бусдын өдрийг гэрэлтүүлж чадна.",
+        "Би аливаа нөхцөлөөс сайн талыг олж хардаг.",
+        "Аз жаргал миний амьдралд чөлөөтэй урсдаг.",
+        "Би сайхан ерөөл, сайн боломжийг татдаг хүн.",
+        "Миний эерэг хандлага бэрхшээлийг боломж болгодог.",
+        "Би хаана ч очсон гэрэл авчирдаг.",
+        "Өнөөдөр би сайхан зүйлд төвлөрнө.",
+        "Би хайр, инээд, боломжийн дунд амьдарч байна.",
+        "Миний өөдрөг үзэл бодит үр дүн авчирдаг.",
+        "Би жижиг зүйлээс ч баяр олж чаддаг.",
+        "Өдөр бүрийг би баяр баясгалангаар бүтээнэ.",
+        "Би сөрөг бодлоо орхиж, талархлыг сонгодог.",
+        "Миний зүрх талархлаар дүүрэн.",
+        "Бүх зүйл надад сайн сайхнаар өрнөж байна гэдэгт итгэдэг.",
+        "Би аз жаргалтай амьдрах эрхтэй.",
+        "Эерэг бодол эерэг үр дүнг бий болгодог.",
+        "Би өглөө бүр сайхан зүйл хүлээж сэрдэг.",
+      ],
+      health: [
+        "Миний бие бол миний үнэт баялаг.",
+        "Миний сонголт бүр бие, оюун, сэтгэлийг минь тэтгэдэг.",
+        "Би эрүүл, бүрэн, эрч хүчтэй байна.",
+        "Миний бие өдөр бүр улам сайжирч байна.",
+        "Би биеэ зөв сонсож, биеийнхээ хэрэгцээг хүндэтгэдэг.",
+        "Би өөрийн хүчтэй биедээ талархдаг.",
+        "Эрүүл мэнд миний амьдралын салшгүй хэсэг.",
+        "Би өөртөө зөөлөн, хүндэтгэлтэй ханддаг.",
+        "Миний дархлаа хүчтэй, намайг хамгаалдаг.",
+        "Би эрүүл хооллож, хөдөлж, хангалттай амардаг.",
+        "Зүрхний цохилт бүр амьдралын үнэ цэнийг сануулдаг.",
+        "Би биеийнхээ хэмнэлтэй зохицож амьдардаг.",
+        "Сэтгэцийн эрүүл мэндээ анхаарч хамгаалдаг.",
+        "Би гүн амьсгалж, тайван байдлыг сонгодог.",
+        "Би өдөр бүр улам эрүүл болж байна.",
+        "Би амар тайван унтаж, сэргэлэн сэрдэг.",
+        "Би биеэ баяртайгаар хөдөлгөдөг.",
+        "Оюун минь тайван, бие минь амар.",
+        "Би урт хугацааны сайн сайхныг дэмжсэн сонголт хийдэг.",
+        "Би өөрийн хамгийн эрүүл хувилбартаа ойртож байна.",
+      ],
+      family: [
+        "Миний гэр бүл бол миний хамгийн үнэт зүйл.",
+        "Намайг чин сэтгэлээсээ хайрладаг хүмүүсээр би хүрээлэгдсэн.",
+        "Би дулаан, аюулгүй, хайр дүүрэн гэрийг бүтээж байна.",
+        "Хайртай хүмүүсийн маань холбоо өдөр бүр гүнзгийрч байна.",
+        "Би хайрыг өгч, бас хүлээн авч чаддаг.",
+        "Би гэр бүлийнхэндээ тэвчээртэй, энэрэнгүй ханддаг.",
+        "Миний харилцаа итгэл, хүндлэл дээр тогтдог.",
+        "Гэрийн инээд, дулаанд би талархдаг.",
+        "Би хайртай хүмүүстэйгээ цагийг чанартай өнгөрүүлдэг.",
+        "Бид бие биенийхээ мөрөөдлийг дэмждэг.",
+        "Би нээлттэй ярилцаж, чин сэтгэлээсээ сонсдог.",
+        "Манай гэрийн суурь бол хайр.",
+        "Би амархан уучилж, хайртай хүмүүсээ зүрхэндээ хадгалдаг.",
+        "Би хайрын сайхан өв үлдээж байна.",
+        "Миний оролцоо гэр бүлд минь тайвшрал авчирдаг.",
+        "Би дэмжлэгтэй, халуун дулаан харилцааг татдаг.",
+        "Би хайртай хүмүүсийнхээ сайн талыг олж хардаг.",
+        "Миний гэр бол амар амгалангийн орон.",
+        "Би хамгийн чухал хүмүүстэйгээ ойр дотно байдаг.",
+        "Бидний холбоо өдөр бүр улам бат бөх болж байна.",
+      ],
+      growth: [
+        "Би өдөр бүр өөрийнхөө илүү сайхан хувилбар болж байна.",
+        "Хэцүү зүйлс ч надад үнэ цэнтэй сургамж өгдөг.",
+        "Би өөрчлөлтийг айхгүй, хүлээн авдаг.",
+        "Миний боломж хязгааргүй.",
+        "Би өдөр бүр суралцахад нээлттэй.",
+        "Жижиг ахиц бүрийг би үнэлдэг.",
+        "Сорилт бол өсөх боломж.",
+        "Би өөртөө хөрөнгө оруулдаг.",
+        "Би шинэ зүйл туршихаас айхгүй.",
+        "Би аливаа зүйлийг хийхдээ итгэлтэй, тэвчээртэй байна.",
+        "Би өдөр бүр шинэ зүйл олж мэддэг.",
+        "Миний өнгөрсөн намайг хязгаарлахгүй.",
+        "Би хүссэн амьдралынхаа төлөө зоригтой алхдаг.",
+        "Өсөлт бол миний байгалийн замнал.",
+        "Би зөвлөгөө, санал хүсэлтийг хүлээн авч чаддаг.",
+        "Алдаа бол суралцах нэг алхам.",
+        "Би уян хатан, дасан зохицох чадвартай.",
+        "Би зорилгоо тодорхой тавьж, тууштай ажилладаг.",
+        "Миний хамгийн сайн хувилбар өдөр бүр бүтэж байна.",
+        "Би улам ухаалаг, итгэлтэй, хүчтэй болж байна.",
+      ],
+      wealth: [
+        "Элбэг дэлбэг байдал миний амьдралд чөлөөтэй орж ирдэг.",
+        "Би амжилт, санхүүгийн үсрэлт хөгжил намайг дагана.",
+        "Би мөнгөтэй эрүүл харилцаатай.",
+        "Би боломжийг итгэлтэйгээр ашигладаг.",
+        "Би орлогоо ухаалгаар удирддаг.",
+        "Орлого минь олон эх үүсвэрээс нэмэгдэж байна.",
+        "Би хомсдол биш харин элбэг дэлбэг байдлаг байнга боддог.",
+        "Миний орлого тогтвортой өсөж байна.",
+        "Би амьдралдаа байгаа санхүүгийн сайн сайханд талархдаг.",
+        "Би үнэ цэнэ бүтээдэг учраас шагнал намайг дагадаг.",
+        "Би санхүүгийн эрх чөлөөг алхам алхмаар бүтээж байна.",
+        "Би тав тухтай, хангалуун амьдрах эрхтэй.",
+        "Мөнгө бол хэрэгсэл, би үүнийг зөв ашигладаг.",
+        "Би өгөөмөр сэтгэж, талархан хүлээн авдаг.",
+        "Хөгжил цэцэглэлт надад тохирдог.",
+        "Би санхүүгийн ухаалаг шийдвэр гаргадаг.",
+        "Миний баялаг бусдад ч сайн зүйл хийх боломж олгодог.",
+        "Би элбэг дэлбэгийг хүлээн авахад нээлттэй.",
+        "Би санхүүгийн бие даасан байдалд ойртож байна.",
+        "Би ирээдүйдээ бат бөх суурь тавьж байна.",
+      ],
+    };
+
+    // ══════════════════════════════════════
+    // MONGOLIAN EVENING POOLS (no Dreams)
+    // ══════════════════════════════════════
+    const mnEveningPools = {
+      calmness: [
+        "Би энэ өдрийн ачааг тавьж, тайван байдалд орж байна.",
+        "Оюун минь нам гүм, сэтгэл минь амар.",
+        "Би санаа зовнилоо орхиж, бүх зүйл зөв өрнөж байгаад итгэдэг.",
+        "Тайван мэдрэмж намайг зөөлөн бүрхэж байна.",
+        "Би өөртөө зүгээр л амрах эрх өгч байна.",
+        "Амьсгал бүр намайг илүү тайвшруулж байна.",
+        "Орчны чимээ намжиж, би дотоод амар амгаланг мэдэрч байна.",
+        "Би аюулгүй, зөв газартаа байна.",
+        "Өдрийн төгсгөлд би тайван байдлыг сонгодог.",
+        "Би бүхнийг хянах гэж оролдохоо больж, суллаж байна.",
+        "Зүрх минь хөнгөн, мөр минь амар.",
+        "Би төгс байхыг биш, харин амар амгаланг сонгодог.",
+        "Энэ орой би тав тухыг мэдэрч байна.",
+        "Бие минь чангарсан байсан бол одоо суларч байна.",
+        "Шөнийн нам гүм надад тайвшрал авчирдаг.",
+        "Би энэ тайван мөчид талархаж байна.",
+        "Миний бие тайвширч, амарч байна.",
+        "Тавтай шөнийн дараа бие минь сайхан сэргэнэ.",
+        "Тайван байдал миний дотор бий.",
+        "Нүдээ анихад минь амар амгалан мэдрэгдэж байна.",
+      ],
+      fulfillment: [
+        "Өнөөдөр хийсэн зүйлсээрээ би бахархаж байна.",
+        "Би өнөөдөр чадлаараа хангалттай хичээсэн.",
+        "Би өнөөдөр шударгаар хөдөлмөрлөсөн, сэтгэл хангалуун байна.",
+        "Миний зүрх талархлаар дүүрэн байна.",
+        "Жижиг ялалт бүрээ би анзаарч, үнэлдэг.",
+        "Би өнөөдөр өөрийнхөөрөө үнэ цэнэ бүтээлээ.",
+        "Би өдөр бүр бага багаар илүү сайн хүн болж байна.",
+        "Өнөөдөр миний амьдралд нэг сайхан бүлэг нэмэгдлээ.",
+        "Би өнөөдрийн хөдөлмөрөө, өнөөдрийн өөрийгөө хүндэтгэж байна.",
+        "Би зорилготой амьдарснаа мэдэрч байна.",
+        "Өнөөдөр хийсэн зүйлс маргааш үр дүнгээ өгнө.",
+        "Би хангалттай хийсэн, хангалттай өгсөн.",
+        "Энэ өдрөөс би туршлага, сургамж авч дуусгаж байна.",
+        "Миний өнөөдрийн хичээл зүтгэл ирээдүйг бүтээж байна.",
+        "Энэ өдрийг талархалтайгаар хүлээн авч байна.",
+        "Өнөөдөр хэлсэн сайхан үгс маргааш ч үргэлжилнэ.",
+        "Би өөрийн зам дээрээ зөв явж байгаагаа өнөөдөр мэдэрлээ.",
+        "Энгийн мөчүүдээс хүртэл би баяр оллоо.",
+        "Би өөртөө болон бусдад сайхан хандсанаараа бахархаж байна.",
+        "Өнөөдөр төгс биш байсан ч миний хувьд сайхан өдөр байлаа.",
+      ],
+      lifeGoals: [
+        "Би хүссэн амьдралаа аажмаар, тогтвортой бүтээж байна.",
+        "Өдөр бүр би ирээдүйнхээ сайханд ойртож байна.",
+        "Миний зорилго тодорхой, зам минь урд нээлттэй байна.",
+        "Би өөрийн үг үйлдлээ хамгийн чухал хүсэл, зорилготойгоо нийцүүлдэг.",
+        "Миний алсын хараа өдөр бүр бодит болж байна.",
+        "Би сайхан амьдралыг хүртэх эрхтэй.",
+        "Миний мөрөөдөл хэт том биш — надад яг тохирно.",
+        "Өнөөдрийн хичээл зүтгэл маргаашийн амжилтыг бүтээнэ.",
+        "Би бахархах амьдралынхаа түүхийг бичиж байна.",
+        "Жижиг алхам бүр том зүйл рүү ойртуулдаг.",
+        "Надад зориг, тууштай байдал, тодорхой төлөвлөгөө бий.",
+        "Миний ирээдүй гэрэлтэй — би үүнийг өөрөө бүтээж байна.",
+        "Би өөртөө итгэдэг, бууж өгөхгүй.",
+        "Би зорилгодоо нэг алхам ойртсоноо мэдэрч байна.",
+        "Өсөлт хөгжилд хүргэх зорилгууд бол надад хэрэгтэй зорилгууд.",
+        "Би цаг хугацаанд тэвчээртэй, хичээл зүтгэлдээ тууштай.",
+        "Миний зорилго өдөр бүр улам тод болж байна.",
+        "Би мөрөөдлийн араас хөөцөлдөх биш харин түүнийгээ өдөр бүр бүтээж байна.",
+        "Миний хүсдэг амьдрал бол мөрөөдөл биш — төлөвлөгөө.",
+        "Маргааш шинэ боломж авчирна гэдэгт итгээд унтана.",
+      ],
+      family: [
+        "Хайртай хүмүүстэйгээ өнгөрүүлсэн мөч бүрт би талархдаг.",
+        "Гэр бүл минь миний тулгуур — энэ орой намайг тайвшруулж байна.",
+        "Өдөр дуусахад хайртай хүмүүстээ хамгийн сайн сайхныг хүсдэг, хэлдэг.",
+        "Өнөөдрийн хайр, халамж амьдралыг минь утга учиртай болгодог.",
+        "Гэрийн дулааныг бүрдүүлдэг хүмүүст би талархдаг.",
+        "Би энэ орой гэр бүлийн аз жаргалд бялхан, санаа зовнилгүй байна.",
+        "Би хайртай хүмүүстээ тайвшрал өгч чадна.",
+        "Намайг хайрладаг хүмүүс байдгийг мэдэх нь надад амар амгалан өгдөг.",
+        "Би хайртай хүмүүстэйгээ холбоотой байгаагаа мэдэрч байна.",
+        "Би өнөөдрийн жижиг гомдлыг орхиод, хайрыг сонгож байна.",
+        "Гэр бүлийн инээд бол хамгийн сайхан чимээ.",
+        "Би дулаан дурсамжаар дүүрэн гэрийг бүтээж байна.",
+        "Гэр бүлийн хайр төгс бус өдөрт ч хүчтэй байдаг.",
+        "Би бусдыг буруутгахаа больж, хайраа түгээнэ.",
+        "Би энэ орой ч хайр дунд байна.",
+        "Өнөөдрийн жижиг, зөөлөн мөчүүдийг би үнэлж байна.",
+        "Миний гэр бүл — миний хамгийн том баяр баясал.",
+        "Өдөр ямар ч байсан би хайр энэрэлтэй байж чаддагтаа талархдаг.",
+        "Бид хайр, энэрлийн үрийг өдөр бүр тарьж байна.",
+        "Тэвэрч, инээмсэглэсэн мөч бүрт би талархдаг.",
+      ],
+      rest: [
+        "Миний бие амрах эрхтэй — би өөртөө амралт өгч байна.",
+        "Би нойрондоо тайван бууж өгч байна.",
+        "Амралт бол тансаглал биш — хэрэгцээ.",
+        "Би булчингаа суллаж, бодлоо намуухан болгоно.",
+        "Өнөө шөнө би гүн, тайван унтана.",
+        "Миний унтлагын өрөө бол амрах аюулгүй орон зай.",
+        "Би энэ амралтыг авах эрхтэй, баяртайгаар хүлээн авна.",
+        "Унтаж байхдаа бие минь өөрийгөө сэргээдгийг би мэднэ.",
+        "Одоо надад хийх зүйл үгүй — энэ бол амрах цаг.",
+        "Нойр бол өөртөө өгөх хамгийн сайхан бэлэг.",
+        "Амарч байхдаа бие минь чимээгүйхэн эдгэрч байдагт итгэдэг.",
+        "Маргаашийн санааг түр тавиад, одоогийн тав тухыг сонгоно.",
+        "Амьсгал бүр намайг нойронд ойртуулж байна.",
+        "Би тэжээлтэй, чанартай нойрыг хүртэх эрхтэй.",
+        "Шөнө намайг зөөлөн тайвшруулж байна.",
+        "Оюун минь улам тайван болж, нойр хүрч байна.",
+        "Би энэ өдрийг хайраар хааж, амралтыг угтаж байна.",
+        "Өнөө шөнө бие, оюун, сэтгэл минь бүрэн сэргэнэ.",
+        "Дэрний зөөлөн байдал надад тав тухыг сануулдаг.",
+        "Би энэ өдрийг амар амгалангаар дуусгаж, сайхан нойрыг угтаж байна.",
+      ],
+    };
+
+    // ══════════════════════════════════════
     // THEME CONFIG
     // ══════════════════════════════════════
     const morningThemes = ["energy", "positivity", "health", "family", "growth", "wealth"];
-    const morningLabels = {
-      energy: "Energy & Vitality", positivity: "Positivity & Joy", health: "Health & Wellness",
-      family: "Family & Love", growth: "Growth & Purpose", wealth: "Wealth & Abundance",
+    const eveningThemes = ["calmness", "fulfillment", "lifeGoals", "family", "rest"];
+
+    const labels = {
+      en: {
+        morning: { energy: "Energy & Vitality", positivity: "Positivity & Joy", health: "Health & Wellness", family: "Family & Love", growth: "Growth & Purpose", wealth: "Wealth & Abundance" },
+        evening: { calmness: "Calmness & Peace", fulfillment: "Fulfillment & Gratitude", lifeGoals: "Life Goals & Vision", family: "Family & Love", rest: "Rest & Restoration" },
+      },
+      mn: {
+        morning: { energy: "Энерги & Эрч хүч", positivity: "Эерэг байдал & Баяр", health: "Эрүүл мэнд", family: "Гэр бүл & Хайр", growth: "Өсөлт & Зорилго", wealth: "Баялаг & Элбэг дэлбэг" },
+        evening: { calmness: "Тайван байдал", fulfillment: "Биелэл & Талархал", lifeGoals: "Амьдралын зорилго", family: "Гэр бүл & Хайр", rest: "Амралт & Сэргэлт" },
+      },
     };
 
-    const eveningThemes = ["calmness", "fulfillment", "dreams", "lifeGoals", "family", "rest"];
-    const eveningLabels = {
-      calmness: "Calmness & Peace", fulfillment: "Fulfillment & Gratitude", dreams: "Dreams & Imagination",
-      lifeGoals: "Life Goals & Vision", family: "Family & Love", rest: "Rest & Restoration",
+    const ui = {
+      en: {
+        morningTitle: "Morning Affirmations", eveningTitle: "Evening Affirmations",
+        banner: "Everyday Affirmations\nBatt Insights",
+        readAloud: "Read Aloud", stop: "Stop", day: "Day", of: "of",
+        copyright: "All rights reserved.", toggleLabel: "МОН", toggleFlag: "🇲🇳",
+      },
+      mn: {
+        morningTitle: "Өглөөний эерэг үгс", eveningTitle: "Оройн эерэг үгс",
+        banner: "Өдөр тутмын эерэг үгс\nBatt Insights",
+        readAloud: "", stop: "", day: "Өдөр", of: "/",
+        copyright: "Бүх эрх хуулиар хамгаалагдсан.", toggleLabel: "ENG", toggleFlag: "🇺🇸",
+      },
     };
 
     // ══════════════════════════════════════
     // UTILITIES
     // ══════════════════════════════════════
     function seededRandom(seed) {
-      let s = seed % 2147483647;
-      if (s <= 0) s += 2147483646;
-      return function () {
-        s = (s * 16807) % 2147483647;
-        return (s - 1) / 2147483646;
-      };
+      let s = seed % 2147483647; if (s <= 0) s += 2147483646;
+      return function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+    }
+    function isLeapYear(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+    function getDayOfYear(d) { return Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5); }
+    function formatDate(d, lang) {
+      if (lang === "mn") {
+        const m = ["Нэгдүгээр сар","Хоёрдугаар сар","Гуравдугаар сар","Дөрөвдүгээр сар","Тавдугаар сар","Зургадугаар сар","Долдугаар сар","Наймдугаар сар","Есдүгээр сар","Аравдугаар сар","Арван нэгдүгээр сар","Арван хоёрдугаар сар"];
+        const w = ["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"];
+        return `${w[d.getDay()]}, ${d.getFullYear()} оны ${m[d.getMonth()]}ын ${d.getDate()}`;
+      }
+      return d.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
     }
 
-    function isLeapYear(year) {
-      return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-    }
-
-    function getDayOfYear(date) {
-      const start = new Date(date.getFullYear(), 0, 0);
-      return Math.floor((date - start) / (1000 * 60 * 60 * 24));
-    }
-
-    function formatDate(date) {
-      return date.toLocaleDateString("en-US", {
-        weekday: "long", year: "numeric", month: "long", day: "numeric",
-      });
-    }
-
-    function buildParagraph(pools, themes, labels, seed, dayOfYear) {
+    function buildParagraph(pools, themes, themeLabels, seed, dayOfYear) {
       const rng = seededRandom(seed);
       const primaryIdx = (dayOfYear - 1) % themes.length;
       const primaryTheme = themes[primaryIdx];
       const primary = [...pools[primaryTheme]];
       const selected = [];
-
-      function pick(arr) {
-        const idx = Math.floor(rng() * arr.length);
-        return arr.splice(idx, 1)[0];
-      }
-
+      function pick(arr) { const i = Math.floor(rng() * arr.length); return arr.splice(i, 1)[0]; }
       for (let i = 0; i < 4; i++) selected.push(pick(primary));
-
       const others = themes.filter(t => t !== primaryTheme);
       const s1 = others[Math.floor(rng() * others.length)];
-      const rest = others.filter(t => t !== s1);
-      const s2 = rest[Math.floor(rng() * rest.length)];
+      const r = others.filter(t => t !== s1);
+      const s2 = r[Math.floor(rng() * r.length)];
       selected.push(pick([...pools[s1]]));
       selected.push(pick([...pools[s2]]));
-
-      return { theme: labels[primaryTheme], paragraph: selected.join(" ") };
+      return { theme: themeLabels[primaryTheme], paragraph: selected.join(" ") };
     }
 
     // ══════════════════════════════════════
-    // RENDER
+    // STATE & RENDER
     // ══════════════════════════════════════
+    let currentLang = "en";
     const today = new Date();
     const year = today.getFullYear();
     const dayOfYear = getDayOfYear(today);
     const totalDays = isLeapYear(year) ? 366 : 365;
-    const dateStr = formatDate(today);
     const hour = today.getHours();
-
-    // Morning: 4am–5:59pm (4–17), Evening: 6pm–3:59am (18–3)
     const isMorning = hour >= 4 && hour < 18;
 
-    // Show/hide sections
-    const morningSection = document.querySelector(".morning");
-    const eveningSection = document.querySelector(".evening");
-    const banner = document.querySelector(".banner");
+    function render(lang) {
+      currentLang = lang;
+      const u = ui[lang];
+      const mP = lang === "en" ? enMorningPools : mnMorningPools;
+      const eP = lang === "en" ? enEveningPools : mnEveningPools;
+      const mL = labels[lang].morning;
+      const eL = labels[lang].evening;
+      const morning = buildParagraph(mP, morningThemes, mL, year * 1000 + dayOfYear, dayOfYear);
+      const evening = buildParagraph(eP, eveningThemes, eL, year * 1000 + dayOfYear + 500000, dayOfYear);
+      const dateStr = formatDate(today, lang);
 
-    if (isMorning) {
-      eveningSection.classList.add("hidden");
-      banner.classList.add("morning-mode");
-    } else {
-      morningSection.classList.add("hidden");
-      banner.classList.add("evening-mode");
+      document.getElementById("m-title").textContent = u.morningTitle;
+      document.getElementById("e-title").textContent = u.eveningTitle;
+      document.getElementById("m-date").textContent = dateStr;
+      document.getElementById("e-date").textContent = dateStr;
+      document.getElementById("m-theme").textContent = morning.theme;
+      document.getElementById("m-affirmation").textContent = morning.paragraph;
+      document.getElementById("e-theme").textContent = evening.theme;
+      document.getElementById("e-affirmation").textContent = evening.paragraph;
+      document.getElementById("m-day-label").textContent = u.day;
+      document.getElementById("m-of-label").textContent = u.of;
+      document.getElementById("m-day").textContent = dayOfYear;
+      document.getElementById("m-total").textContent = totalDays;
+      document.getElementById("e-day-label").textContent = u.day;
+      document.getElementById("e-of-label").textContent = u.of;
+      document.getElementById("e-day").textContent = dayOfYear;
+      document.getElementById("e-total").textContent = totalDays;
+      document.getElementById("copyright-text").textContent = u.copyright;
+      document.getElementById("lang-flag").textContent = u.toggleFlag;
+      document.getElementById("lang-label").textContent = u.toggleLabel;
+      document.querySelectorAll(".voice-btn").forEach(btn => { btn.style.display = lang === "mn" ? "none" : "flex"; });
+      buildWaveText(u.banner);
+      window._morningText = morning.paragraph;
+      window._eveningText = evening.paragraph;
     }
 
-    // Populate morning
-    const morning = buildParagraph(morningPools, morningThemes, morningLabels, year * 1000 + dayOfYear, dayOfYear);
-    document.getElementById("m-date").textContent = dateStr;
-    document.getElementById("m-theme").textContent = morning.theme;
-    document.getElementById("m-affirmation").textContent = morning.paragraph;
-    document.getElementById("m-day").textContent = dayOfYear;
-    document.getElementById("m-total").textContent = totalDays;
-
-    // Populate evening
-    const evening = buildParagraph(eveningPools, eveningThemes, eveningLabels, year * 1000 + dayOfYear + 500000, dayOfYear);
-    document.getElementById("e-date").textContent = dateStr;
-    document.getElementById("e-theme").textContent = evening.theme;
-    document.getElementById("e-affirmation").textContent = evening.paragraph;
-    document.getElementById("e-day").textContent = dayOfYear;
-    document.getElementById("e-total").textContent = totalDays;
-
-    // ══════════════════════════════════════
-    // VOICE (Web Speech API)
-    // ══════════════════════════════════════
-    function setupVoice(btnId, text) {
-      const btn = document.getElementById(btnId);
-      if (!btn || btn.closest(".hidden")) return;
-      const playIcon = btn.querySelector(".icon-play");
-      const stopIcon = btn.querySelector(".icon-stop");
-      const label = btn.querySelector(".voice-label");
-      let speaking = false;
-
-      function stop() {
-        speechSynthesis.cancel();
-        speaking = false;
-        btn.classList.remove("speaking");
-        playIcon.style.display = "";
-        stopIcon.style.display = "none";
-        label.textContent = "Read Aloud";
-      }
-
-      function start() {
-        speechSynthesis.cancel();
-
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.92;
-        utterance.pitch = 1.0;
-
-        const voices = speechSynthesis.getVoices();
-        const preferred = voices.find(v =>
-          v.lang.startsWith("en") && (v.name.includes("Samantha") || v.name.includes("Google") || v.name.includes("Natural"))
-        ) || voices.find(v => v.lang.startsWith("en"));
-        if (preferred) utterance.voice = preferred;
-
-        utterance.onend = stop;
-        utterance.onerror = stop;
-
-        speechSynthesis.speak(utterance);
-        speaking = true;
-        btn.classList.add("speaking");
-        playIcon.style.display = "none";
-        stopIcon.style.display = "";
-        label.textContent = "Stop";
-      }
-
-      btn.addEventListener("click", () => {
-        if (speaking) { stop(); } else { start(); }
+    function buildWaveText(text) {
+      const c = document.getElementById("wave-text"); c.innerHTML = ""; let ci = 0;
+      const lines = text.split("\n");
+      lines.forEach((line, li) => {
+        line.split("").forEach(ch => {
+          if (ch === " ") { const s = document.createElement("span"); s.innerHTML = "&nbsp;"; s.style.width = "0.3em"; c.appendChild(s); }
+          else { const s = document.createElement("span"); s.className = "wave-char"; s.textContent = ch; s.style.animationDelay = (ci * 0.07) + "s"; c.appendChild(s); ci++; }
+        });
+        if (li < lines.length - 1) {
+          const br = document.createElement("div");
+          br.style.width = "100%";
+          br.style.height = "0.4rem";
+          c.appendChild(br);
+        }
       });
     }
 
-    setupVoice("m-voice", morning.paragraph);
-    setupVoice("e-voice", evening.paragraph);
+    // Time-based visibility
+    const banner = document.getElementById("banner");
+    const toggle = document.getElementById("lang-toggle");
+    const copyright = document.getElementById("copyright");
+    if (isMorning) {
+      document.getElementById("sec-evening").classList.add("hidden");
+      banner.classList.add("morning-mode"); toggle.classList.add("morning-mode"); copyright.classList.add("morning-mode");
+    } else {
+      document.getElementById("sec-morning").classList.add("hidden");
+      banner.classList.add("evening-mode"); toggle.classList.add("evening-mode"); copyright.classList.add("evening-mode");
+    }
+    document.getElementById("copy-year").textContent = year;
 
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.onvoiceschanged = () => {};
+    // Voice (English only)
+    function setupVoice(btnId, getTextFn) {
+      const btn = document.getElementById(btnId);
+      if (!btn || btn.closest(".hidden")) return;
+      const pi = btn.querySelector(".icon-play"), si = btn.querySelector(".icon-stop"), lb = btn.querySelector(".voice-label");
+      let sp = false;
+      function stop() { speechSynthesis.cancel(); sp = false; btn.classList.remove("speaking"); pi.style.display = ""; si.style.display = "none"; lb.textContent = "Read Aloud"; }
+      function start() {
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(getTextFn()); u.rate = 0.92; u.pitch = 1.0;
+        const v = speechSynthesis.getVoices();
+        const pv = v.find(x => x.lang.startsWith("en") && (x.name.includes("Samantha") || x.name.includes("Google") || x.name.includes("Natural"))) || v.find(x => x.lang.startsWith("en"));
+        if (pv) u.voice = pv;
+        u.onend = stop; u.onerror = stop; speechSynthesis.speak(u);
+        sp = true; btn.classList.add("speaking"); pi.style.display = "none"; si.style.display = ""; lb.textContent = "Stop";
+      }
+      btn.addEventListener("click", () => { if (currentLang !== "en") return; if (sp) stop(); else start(); });
+    }
+    setupVoice("m-voice", () => window._morningText);
+    setupVoice("e-voice", () => window._eveningText);
+    if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = () => {};
+
+    // Music toggle mode
+    const musicBtn = document.getElementById("music-toggle");
+    musicBtn.classList.add(isMorning ? "morning-mode" : "evening-mode");
+
+    // Language toggle
+    document.getElementById("lang-toggle").addEventListener("click", () => {
+      speechSynthesis.cancel();
+      document.querySelectorAll(".voice-btn.speaking").forEach(b => {
+        b.classList.remove("speaking"); b.querySelector(".icon-play").style.display = "";
+        b.querySelector(".icon-stop").style.display = "none"; b.querySelector(".voice-label").textContent = "Read Aloud";
+      });
+      render(currentLang === "en" ? "mn" : "en");
+    });
+
+    render("en");
+
+    // ══════════════════════════════════════
+    // AMBIENT MUSIC (Web Audio API - Melodious)
+    // ══════════════════════════════════════
+    let audioCtx = null;
+    let musicPlaying = false;
+    let musicNodes = [];
+    let melodyInterval = null;
+
+    function createAmbientMusic() {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const master = audioCtx.createGain();
+      master.gain.value = 0.18;
+      master.connect(audioCtx.destination);
+
+      // Reverb via convolver (simple impulse)
+      const convolver = audioCtx.createConvolver();
+      const rate = audioCtx.sampleRate;
+      const length = rate * 3;
+      const impulse = audioCtx.createBuffer(2, length, rate);
+      for (let ch = 0; ch < 2; ch++) {
+        const data = impulse.getChannelData(ch);
+        for (let i = 0; i < length; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2.5);
+        }
+      }
+      convolver.buffer = impulse;
+      const reverbGain = audioCtx.createGain();
+      reverbGain.gain.value = 0.4;
+      convolver.connect(reverbGain);
+      reverbGain.connect(master);
+
+      // Dry path
+      const dryGain = audioCtx.createGain();
+      dryGain.gain.value = 0.6;
+      dryGain.connect(master);
+
+      // Warm pad drone (quiet foundation)
+      const padFreqs = isMorning ? [174, 220, 261] : [146, 174, 220];
+      padFreqs.forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        const g = audioCtx.createGain();
+        g.gain.value = 0;
+        const now = audioCtx.currentTime;
+        g.gain.setValueAtTime(0, now);
+        g.gain.linearRampToValueAtTime(0.03, now + 4 + i);
+        const lfo = audioCtx.createOscillator();
+        lfo.type = "sine";
+        lfo.frequency.value = 0.04 + (i * 0.015);
+        const lfoG = audioCtx.createGain();
+        lfoG.gain.value = 0.008;
+        lfo.connect(lfoG);
+        lfoG.connect(g.gain);
+        lfo.start();
+        const filt = audioCtx.createBiquadFilter();
+        filt.type = "lowpass";
+        filt.frequency.value = isMorning ? 700 : 450;
+        filt.Q.value = 0.4;
+        osc.connect(filt);
+        filt.connect(g);
+        g.connect(dryGain);
+        g.connect(convolver);
+        osc.start();
+        musicNodes.push(osc, lfo, g, filt, lfoG);
+      });
+
+      // Melody note player
+      const morningScale = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
+      const eveningScale = [220.00, 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00];
+      const scale = isMorning ? morningScale : eveningScale;
+
+      // Pentatonic-ish melody pattern (indices into scale) for a gentle feel
+      const morningPattern = [0, 2, 4, 7, 4, 5, 2, 4, 0, 2, 5, 7, 4, 2, 0, 5];
+      const eveningPattern = [7, 5, 4, 2, 0, 2, 4, 5, 7, 4, 2, 0, 2, 5, 4, 7];
+      const pattern = isMorning ? morningPattern : eveningPattern;
+      let noteIndex = 0;
+
+      function playNote() {
+        if (!audioCtx || audioCtx.state !== "running") return;
+        const now = audioCtx.currentTime;
+        const freq = scale[pattern[noteIndex % pattern.length]];
+        noteIndex++;
+
+        // Main tone (sine, soft)
+        const osc = audioCtx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+
+        // Gentle overtone
+        const osc2 = audioCtx.createOscillator();
+        osc2.type = "sine";
+        osc2.frequency.value = freq * 2;
+
+        const noteGain = audioCtx.createGain();
+        noteGain.gain.setValueAtTime(0, now);
+        noteGain.gain.linearRampToValueAtTime(0.08, now + 0.15);
+        noteGain.gain.exponentialRampToValueAtTime(0.001, now + 3.5);
+
+        const overtoneGain = audioCtx.createGain();
+        overtoneGain.gain.setValueAtTime(0, now);
+        overtoneGain.gain.linearRampToValueAtTime(0.015, now + 0.1);
+        overtoneGain.gain.exponentialRampToValueAtTime(0.001, now + 2);
+
+        const filt = audioCtx.createBiquadFilter();
+        filt.type = "lowpass";
+        filt.frequency.value = isMorning ? 2000 : 1200;
+        filt.Q.value = 0.3;
+
+        osc.connect(noteGain);
+        osc2.connect(overtoneGain);
+        noteGain.connect(filt);
+        overtoneGain.connect(filt);
+        filt.connect(dryGain);
+        filt.connect(convolver);
+
+        osc.start(now);
+        osc2.start(now);
+        osc.stop(now + 4);
+        osc2.stop(now + 3);
+      }
+
+      // Play notes at varying intervals for organic feel
+      let nextDelay = 800;
+      function scheduleNext() {
+        if (!musicPlaying) return;
+        playNote();
+        // Vary timing: 1.2s to 2.8s between notes
+        nextDelay = 1200 + Math.random() * 1600;
+        melodyInterval = setTimeout(scheduleNext, nextDelay);
+      }
+
+      // Start melody after a gentle 2s intro
+      melodyInterval = setTimeout(scheduleNext, 2000);
+
+      musicNodes.push(master, convolver, reverbGain, dryGain);
     }
 
-    // Copyright year
-    document.getElementById("copy-year").textContent = new Date().getFullYear();
-    document.querySelector(".copyright").classList.add(isMorning ? "morning-mode" : "evening-mode");
+    function startMusic() {
+      if (!audioCtx) {
+        createAmbientMusic();
+      } else if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+        // Restart melody loop
+        if (!melodyInterval) {
+          function restartMelody() {
+            if (!musicPlaying) return;
+            // Trigger a note via the existing closure — recreate a simple scheduler
+            const now = audioCtx.currentTime;
+            const morningScale = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
+            const eveningScale = [220.00, 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00];
+            const scale = isMorning ? morningScale : eveningScale;
+            const morningPat = [0, 2, 4, 7, 4, 5, 2, 4, 0, 2, 5, 7, 4, 2, 0, 5];
+            const eveningPat = [7, 5, 4, 2, 0, 2, 4, 5, 7, 4, 2, 0, 2, 5, 4, 7];
+            const pat = isMorning ? morningPat : eveningPat;
+            const idx = Math.floor(Math.random() * pat.length);
+            const freq = scale[pat[idx]];
+
+            const osc = audioCtx.createOscillator();
+            osc.type = "sine";
+            osc.frequency.value = freq;
+            const g = audioCtx.createGain();
+            g.gain.setValueAtTime(0, now);
+            g.gain.linearRampToValueAtTime(0.08, now + 0.15);
+            g.gain.exponentialRampToValueAtTime(0.001, now + 3.5);
+            const f = audioCtx.createBiquadFilter();
+            f.type = "lowpass";
+            f.frequency.value = isMorning ? 2000 : 1200;
+            osc.connect(g);
+            g.connect(f);
+            f.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 4);
+
+            melodyInterval = setTimeout(restartMelody, 1200 + Math.random() * 1600);
+          }
+          melodyInterval = setTimeout(restartMelody, 500);
+        }
+      }
+      musicPlaying = true;
+      musicBtn.classList.add("playing");
+    }
+
+    function stopMusic() {
+      if (audioCtx) audioCtx.suspend();
+      if (melodyInterval) { clearTimeout(melodyInterval); melodyInterval = null; }
+      musicPlaying = false;
+      musicBtn.classList.remove("playing");
+    }
+
+    musicBtn.addEventListener("click", () => {
+      if (musicPlaying) { stopMusic(); } else { startMusic(); }
+    });
   </script>
 </body>
 </html>
